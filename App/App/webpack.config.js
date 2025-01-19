@@ -53,7 +53,7 @@ module.exports = (env, argv) => {
 
     // Ignore spurious warnings from source-map-loader
     // It can't find source maps for some Closure modules and that is expected
-    config.ignoreWarnings = [/Failed to parse source map/];
+    config.ignoreWarnings = [/Failed to parse source map/,/not found/];
   }
   return config;
 };
