@@ -17,10 +17,9 @@ import {htmlGenerator} from './generators/html';
 Blockly.common.defineBlocks(blocks);
 //Object.assign(javascriptGenerator.forBlock, forBlock);
 // Set up UI elements and inject Blockly
-const codeDiv = document.getElementById('generatedCode').firstChild;
 const blocklyDiv = document.getElementById('blocklyDiv');
 const ws = Blockly.inject(blocklyDiv, {toolbox,
-  media: '../node_modules/blockly/media/',
+  media: 'media/',
   zoom:true
 });
 
@@ -29,7 +28,10 @@ const ws = Blockly.inject(blocklyDiv, {toolbox,
 // In a real application, you probably shouldn't use `eval`.
 const runCode = () => {
   const code = htmlGenerator.workspaceToCode(ws);
-  codeDiv.innerText = `[\n${code}\n]`;
+  const messenger = new XMLHttpRequest();
+  messenger.open('POST','http://127.0.0.1/playground/result/build',true);
+  messenger.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  messenger.send(`code=[\n${code}\n]`);
 };
 
 // Load the initial state from storage and run the code.
