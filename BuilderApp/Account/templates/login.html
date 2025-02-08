@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link href="{% static 'W3.css' %}" rel="stylesheet">
+    <style>
+        .password-container {
+            position: relative;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 70%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .password-input {
+            width: 100%;
+            padding-right: 30px; /* Add padding to the right to make space for the eye icon */
+        }
+        .glow-box {
+            margin: 50px auto;
+            background-color: #ffffff; /* Background color */
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Glow effect */
+            border-radius: 10px; /* Optional: rounded corners */
+        }
+    </style>
+</head>
+<body class="w3-black">
+    <div class="w3-container w3-display-middle" style="width: 300px;">
+        <div class="w3-card-4 w3-round w3-white w3-padding w3-grey glow-box">
+            <div class="w3-center">
+                <img src="{% static 'favicon.ico' %}" class="w3-image" style="width: 100px;">
+            </div>
+            <h2 class="w3-center">Login</h2>
+            <form method="post" class="w3-container">
+                {% csrf_token %}
+                <div class="w3-margin-bottom">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                </div>
+                <div class="w3-margin-bottom password-container">
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+                    <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
+                </div>
+                <button type="submit" class="w3-button w3-block w3-blue w3-round">Login</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordField = document.querySelector('input[name="password"]');
+            var passwordFieldType = passwordField.getAttribute('type');
+            if (passwordFieldType === 'password') {
+                passwordField.setAttribute('type', 'text');
+            } else {
+                passwordField.setAttribute('type', 'password');
+            }
+        }
+    </script>
+</body>
+</html>

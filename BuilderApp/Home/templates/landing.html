@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="{% static 'W3.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+        <style>
+            @keyframes swipeFadeBlue {
+                0% {
+                    background-position: -100%;
+                    color: white;
+                }
+                50% {
+                    background-position: 100%;
+                    color: black;
+                }
+                100% {
+                    background-position: -100%;
+                    color: white;
+                }
+            }
+
+            @keyframes swipeFadeGreen {
+                0% {
+                    background-position: -100%;
+                    color: white;
+                }
+                50% {
+                    background-position: 100%;
+                    color: black;
+                }
+                100% {
+                    background-position: -100%;
+                    color: white;
+                }
+            }
+            body {
+                background-image: linear-gradient(to bottom,#ffffff,#000000);
+                background-position: center top;
+                background-attachment: fixed;
+                background-size: 100% 100vh;
+                background-color: #000000;
+            }
+            .animated-swipe-fade-blue {
+                background: linear-gradient(to right, #2196F3, #21CBF3);
+                background-size: 200% auto;
+                animation: swipeFadeBlue 3s infinite;
+                color: white; /* Ensure text color is readable */
+                padding: 0 10px; /* Add some padding to the text */
+                display: inline-block; /* Ensure the background only covers the text */
+            }
+
+            .animated-swipe-fade-green {
+                background: linear-gradient(to right, #4CAF50, #8BC34A);
+                background-size: 200% auto;
+                animation: swipeFadeGreen 3s infinite;
+                color: white; /* Ensure text color is readable */
+                padding: 0 10px; /* Add some padding to the text */
+                display: inline-block; /* Ensure the background only covers the text */
+            }
+        </style>
+        <script>
+            function routeToSignIn() {
+                window.location.assign('http://127.0.0.1:8000/accounts/login/')
+            }
+        </script>
+    </head>
+    <body>
+        <div class="w3-black w3-bar">
+            <img src="{% static 'favicon.ico' %}" height="65px" width="65px" class="w3-bar-item">
+            <p class="w3-bar-item">WebBuilder</p>
+            <div class="w3-bar-item w3-right">
+                <p class="w3-container w3-button w3-round w3-white" onclick="routeToSignIn()">Sign in</p>
+            </div>
+            <div class="w3-bar-item w3-right">
+                <p class="w3-panel w3-button w3-round">New &dtrif;</p>
+            </div>
+        </div>
+        <div class="w3-card-4 w3-round w3-margin w3-padding">
+            <p class="w3-center w3-xxxlarge"><span class="animated-swipe-fade-blue">Welcome to WebBuilder</span></p>
+            <p class="w3-center w3-large"><span class="animated-swipe-fade-green">Webpage Building, in clicks!</span></p>
+        </div>
+        <p class="w3-margin" style="background:transparent">
+            WebBuilder App is Open Source. The code may be found at <a href="">here</a>
+        </p>
+    </body>
+</html>

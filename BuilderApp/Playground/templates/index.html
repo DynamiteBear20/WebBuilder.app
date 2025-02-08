@@ -1,0 +1,32 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Blockly Sample App</title>
+        <link src="{% static 'index.css' %}" rel="stylesheet">
+        <link href="{% static 'W3.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="w3-black w3-bar">
+            <img src="{% static 'favicon.ico' %}" height="65px" width="65px" class="w3-bar-item">
+            <input type="text" class="w3-bar-item w3-panel w3-grey w3-round" value="{{ url }}" readonly>
+            <div class="w3-bar-item w3-right" id="viewWholeButton" onclick="show()">
+                <p class="w3-button w3-round w3-white">View Whole</p>
+            </div>
+        </div>
+        <div id="pageContainer">
+            <div id="blocklyDiv" style="position:absolute;left:0;width:50%;height: 88vh"></div>
+            <iframe id="iframe" src="http://127.0.0.1:8000/playground/result/{{ url }}" style="position:absolute;right:0;width:50%;height:88vh"></iframe>
+        </div>
+        <script defer="defer" src="{% static 'bundle.js' %}"></script>
+        <script>
+        document.getElementById('show').onclick = (function(){
+            document.getElementById('iframe').contentWindow.location.reload()
+        });
+        function show() {
+            window.open('http://127.0.0.1:8000/playground/result/{{ url }}', '_blank');
+        }
+        </script>
+    </body>
+</html>
